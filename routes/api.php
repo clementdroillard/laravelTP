@@ -13,6 +13,8 @@ use Illuminate\Http\Request;
 |
 */
 
+
+
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
@@ -25,10 +27,14 @@ Route::get('/test', function () {
 
 Route::get('/1', function() { return 'Je suis la page 1 !'; });
 
+Route::get('/todo', 'TodoControllers@index');
+Route::get('/todo/insert/{value}', 'TodoControllers@addOne');
+Route::get('/todo/delete/{id}', 'TodoControllers@delete');
+Route::get('/todo/update/{id}/{value}', 'TodoControllers@update');
+Route::get('/todo/valider/{id}/{valider}', 'TodoControllers@valider');
+Route::get('/todo/maxID', 'TodoControllers@maxID');
 
-
-
-Route::get('/todo/{id}', function ($id) {
+/* Route::get('/todo/{id}', function ($id) {
 	$array = array("Ce que je vais faire", "peut etre", "demain", "ou pas");
     return $array[$id];
-});
+}); */
